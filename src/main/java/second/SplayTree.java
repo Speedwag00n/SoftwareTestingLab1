@@ -86,9 +86,11 @@ public class SplayTree implements Iterable<SplayTreeNode> {
             } else if (value > node.value) {
                 node = node.right;
             } else {
+                splay(node);
                 return node;
             }
         }
+
         return null;
     }
 

@@ -15,7 +15,7 @@ public class Actor {
         this.name = name;
     }
 
-    public Actor(String name, Integer tension) {
+    public Actor(String name, int tension) {
         this.name = name;
         this.tension = tension;
     }

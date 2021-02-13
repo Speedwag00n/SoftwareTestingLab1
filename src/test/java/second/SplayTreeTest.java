@@ -160,4 +160,20 @@ public class SplayTreeTest {
         assertFalse(tree.contains(3));
     }
 
+    @Test
+    public void find() {
+        tree.insert(1);
+        tree.insert(2);
+        tree.insert(3);
+
+        tree.contains(2);
+
+        assertNotNull(tree.root);
+        assertEquals(tree.root.value, 2);
+        assertNotNull(tree.root.left);
+        assertEquals(tree.root.left.value, 1);
+        assertNotNull(tree.root.right);
+        assertEquals(tree.root.right.value, 3);
+    }
+
 }
