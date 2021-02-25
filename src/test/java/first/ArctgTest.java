@@ -3,6 +3,8 @@ package first;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
@@ -20,38 +22,10 @@ public class ArctgTest {
         arctg = new Arctg();
     }
 
-    @Test
-    public void zeroTest() {
-        double expected = 0.0;
-        double actual = arctg.getResult(0.0);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @Test
-    public void tableValuesTest1() {
-        double expected = -Math.PI / 6;
-        double actual = arctg.getResult(-Math.sqrt(3) / 3);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @Test
-    public void tableValuesTest2() {
-        double expected = Math.PI / 6;
-        double actual = arctg.getResult(Math.sqrt(3) / 3);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @Test
-    public void leftBoundTest() {
-        double expected = -Math.PI / 4;
-        double actual = arctg.getResult(-1.0);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @Test
-    public void rightBoundTest() {
-        double expected = Math.PI / 4;
-        double actual = arctg.getResult(1.0);
+    @ParameterizedTest
+    @CsvFileSource(resources = "/test_data.csv")
+    public void tableValuesTest(float expected, float x) {
+        double actual = arctg.getResult(x);
         assertEquals(expected, actual, DELTA);
     }
 
